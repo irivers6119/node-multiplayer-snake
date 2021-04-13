@@ -4,11 +4,12 @@ node ('Ubuntu-app-agent'){
         /* Let's make sure we have the repository cloned to our workspace */
        checkout scm
     }  
-    stage('SAST'){
+    stage('SAST-SYNK'){
         build 'SECURITY-SAST-SNYK'
     }
-
-    
+    stage('SAST-SONAR'){
+        build 'Sonar-Qube'
+    }
     stage('Build-and-Tag') {
      /*   sh 'echo Build-andTag'*/
     /* This builds the actual image; synonymous to
